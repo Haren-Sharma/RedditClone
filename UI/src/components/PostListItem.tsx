@@ -3,7 +3,7 @@ import React from "react";
 import { Post } from "../types";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 dayjs.extend(relativeTime);
 
 type Props = {
@@ -37,38 +37,52 @@ const PostListItem = ({ post }: Props) => {
       </View>
 
       {/*POST FOOTER*/}
-      <View style={{ flexDirection: "row", gap: 3, alignItems: "center" }}>
-        <MaterialCommunityIcons
-          name="arrow-up-bold-outline"
-          size={24}
-          color="black"
-        />
-        <Text>{post.upvotes}</Text>
-        <MaterialCommunityIcons
-          style={{ paddingLeft: 10 }}
-          name="arrow-down-bold-outline"
-          size={24}
-          color="black"
-        />
-        <MaterialCommunityIcons
-          style={{ paddingLeft: 10 }}
-          name="comment-outline"
-          size={24}
-          color="black"
-        />
-        <Text>{post.nr_of_comments}</Text>
-        <MaterialCommunityIcons
-          style={{ paddingLeft: 10 }}
-          name="trophy-outline"
-          size={24}
-          color="black"
-        />
-        <MaterialCommunityIcons
-          style={{ paddingLeft: 10 }}
-          name="share-outline"
-          size={24}
-          color="black"
-        />
+      <View style={[styles.row, { marginTop: 8 }]}>
+        <View style={[styles.row, styles.iconBox]}>
+          <Icon
+            type="MaterialCommunityIcons"
+            name="arrow-up-bold-outline"
+            size={24}
+            color="black"
+          />
+          <Text style={{ paddingRight: 5 }}>{post.upvotes}</Text>
+          <Icon
+            type="MaterialCommunityIcons"
+            name="arrow-down-bold-outline"
+            size={24}
+            color="black"
+            style={{
+              paddingLeft: 8,
+              borderLeftWidth: StyleSheet.hairlineWidth,
+              borderColor: "#aeaeae",
+            }}
+          />
+        </View>
+        <View style={[styles.row, styles.iconBox]}>
+          <Icon
+            type="MaterialCommunityIcons"
+            name="comment-outline"
+            size={24}
+            color="black"
+          />
+          <Text>{post.nr_of_comments}</Text>
+        </View>
+        <View style={[styles.row, { marginLeft: "auto" }]}>
+          <Icon
+            type="MaterialCommunityIcons"
+            name="trophy-outline"
+            size={24}
+            color="black"
+            style={styles.iconBox}
+          />
+          <Icon
+            type="MaterialCommunityIcons"
+            name="share-outline"
+            size={24}
+            color="black"
+            style={styles.iconBox}
+          />
+        </View>
       </View>
     </View>
   );
@@ -103,6 +117,18 @@ const styles = StyleSheet.create({
     aspectRatio: 4 / 3,
     borderRadius: 15,
     marginVertical: 5,
+  },
+  row: {
+    flexDirection: "row",
+    gap: 5,
+    alignItems: "center",
+  },
+  iconBox: {
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: "#aeaeae",
+    padding: 8,
+    elevation: 15,
+    borderRadius: 15,
   },
 });
 
