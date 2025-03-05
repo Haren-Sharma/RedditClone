@@ -8,7 +8,7 @@ type Props = {};
 const HomeScreen = (props: Props) => {
   return (
     <FlatList
-      data={[posts[0]]}
+      data={posts}
       renderItem={({ item }) => <PostListItem post={item} />}
       keyExtractor={(item) => item.id}
     />

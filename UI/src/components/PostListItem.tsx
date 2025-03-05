@@ -32,8 +32,11 @@ const PostListItem = ({ post }: Props) => {
       {/*POST CONTENT*/}
       <View>
         <Text style={styles.postTitle}>{post.title}</Text>
-        <Image source={{ uri: post.image }} style={styles.imageStyle} />
-        <Text numberOfLines={4}>{post.description}</Text>
+        {post.image ? (
+          <Image source={{ uri: post.image }} style={styles.imageStyle} />
+        ) : (
+          <Text numberOfLines={4}>{post.description}</Text>
+        )}
       </View>
 
       {/*POST FOOTER*/}
@@ -58,7 +61,7 @@ const PostListItem = ({ post }: Props) => {
             }}
           />
         </View>
-        <View style={[styles.row, styles.iconBox]}>
+        <View style={[styles.row, styles.iconBox, { marginLeft: 8 }]}>
           <Icon
             type="MaterialCommunityIcons"
             name="comment-outline"
@@ -67,7 +70,7 @@ const PostListItem = ({ post }: Props) => {
           />
           <Text>{post.nr_of_comments}</Text>
         </View>
-        <View style={[styles.row, { marginLeft: "auto" }]}>
+        <View style={[styles.row, { marginLeft: "auto", gap: 10 }]}>
           <Icon
             type="MaterialCommunityIcons"
             name="trophy-outline"
@@ -90,8 +93,9 @@ const PostListItem = ({ post }: Props) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 15,
-    paddingVertical: 10,
+    padding: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: "#D4D4D4",
   },
   grpImageStyle: {
     width: 20,
@@ -110,6 +114,7 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 17,
     letterSpacing: 0.5,
+    paddingVertical: 5,
   },
   createdAtStyle: { color: "#aeaeae" },
   imageStyle: {
@@ -125,10 +130,11 @@ const styles = StyleSheet.create({
   },
   iconBox: {
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "#aeaeae",
-    padding: 8,
+    borderColor: "#D4D4D4",
+    paddingHorizontal: 10,
+    paddingVertical: 5,
     elevation: 15,
-    borderRadius: 15,
+    borderRadius: 20,
   },
 });
 
